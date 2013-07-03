@@ -1,0 +1,148 @@
+.title .icon{
+	height: 48px
+}
+
+.title .text{
+	vertical-align: middle;
+	margin-left: 5px;
+}
+
+#content{
+	margin-top: 36px;
+	border: 2px solid #2C3E50;
+	background-color: #34495E;
+}
+
+.categories{
+	background-color: #34495E;
+	color: rgba(255,255,255,0.9);
+}
+
+.wrapper_categories{
+	margin: 8px 10px;
+	position: relative;
+}
+
+ul.list_categories{
+	margin-left: 0px;
+	margin-top: 32px;
+	margin-bottom: 0px;
+}
+
+ul.list_categories ul{
+	list-style: square;
+	list-style-position: inside;
+	margin: -2px 0 0 0;
+}
+
+ul.list_categories ul li{
+	color:#1abc9c;
+	padding-left: 10px; 
+}
+
+ul.list_categories a{
+	text-decoration: none;
+	color: rgba(255,255,255,0.9);
+}
+
+ul.list_categories a:hover{
+	color:#1abc9c;
+}
+
+ul.list_categories a:hover, ul.list_categories a.active{
+	color:#1abc9c;
+}
+
+ul.list_categories a.active{
+	font-weight: bold;
+}
+
+ul.list_categories li{
+	line-height: 32px;
+	font-size: 16px;
+	border-bottom: 2px solid #2C3E50;
+	padding: 0 5px;
+	position: relative;
+}
+
+ul.list_categories li .actions{
+	position: absolute;
+	top: -2px;
+	left: -64px;
+	padding: 0 10px;
+	line-height: 32px;
+	background-color: #34495E;
+	border: 2px solid #1abc9c;
+	display: none;
+	z-index: 1;
+}
+
+ul.list_categories li:hover .actions{
+	display: block;
+}
+
+ul.list_categories li:first-child{
+	border-top: 2px solid #2C3E50;
+}
+
+ul.list_categories li.new{
+	margin-top: 16px;
+	background-color: #3498DB;
+	border-top: 2px solid #2980B9;
+	border-bottom: 2px solid #2980B9;
+}
+
+.wrapper_manage{
+	margin-top: 10px;
+	background-color: rgba(255,255,255,0.05);
+	padding: 4px 10px;
+}
+
+
+
+.sheets{
+	//border-left: 2px solid rgba(255,255,255,0.8);
+	color: rgba(255,255,255,1);
+}
+
+.wrapper_sheets{
+	margin: 8px 10px;
+	position: relative;
+}
+
+.btn_manage_sheet.add, .btn_add_category {
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+
+.asheet{
+	position: relative;
+	padding: 16px 20px;	
+}
+
+.asheet{
+	margin-top: 8px;
+}
+
+.asheet:hover{
+	background-color: rgba(255,255,255, 0.05);
+}
+
+.asheet .edit_sheet{
+	position: absolute;
+	right: 50px;
+	top: 10px;
+	display: none;
+}
+
+.asheet .delete_sheet{
+	position: absolute;
+	right: 20px;
+	top: 10px;
+	display: none;
+}
+
+.asheet:hover .edit_sheet, .asheet:hover .delete_sheet{
+	display: block;
+}
