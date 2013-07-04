@@ -17,6 +17,7 @@
 			}	
 		}
 
+
 		function loadView($view_name, $data = array()){
 			$path_view = APP_DIR.DS."views".DS.$view_name.".php";
 			if(file_exists($path_view)){
@@ -26,7 +27,6 @@
 				die("View ". $path_view. " introuvable.");
 			}
 		}
-
 
 	}
 

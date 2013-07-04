@@ -1,12 +1,14 @@
 <?= $this->loadView('header'); ?>
 	<div class="container">
 
-		<a href="/">
-			<h1 class="title">
-				<img class="icon" src="/assets/skin/flat-ui/images/icons/Book@2x.png">
-				<span class="text">Annuaire de poche</span>
-			</h1>
-		</a>
+		<div class="wrapper_title">
+			<a href="/">
+				<h1 class="title">
+					<img class="icon" src="/assets/skin/flat-ui/images/icons/Book@2x.png">
+					<span class="text">Annuaire de poche</span>
+				</h1>
+			</a>
+		</div>
 
 		<div id="content" class="row-fluid">
 			<div class="span4 categories">
@@ -83,17 +85,17 @@
 						if($list_of_sheets):
 						foreach($list_of_sheets as $a_sheet):
 					?>
-						<div class="asheet" data-id="<?= $a_sheet['sheet']['sheetid'] ?>">
+						<div class="asheet" data-id="<?= $a_sheet['sheet']['sheetid'] ?>" id="sheet_<?= $a_sheet['sheet']['sheetid'] ?>">
 							<div class="actions">
 								<a href="#wrapper_manage_sheet"  data-type="add"  class="edit_sheet btn_manage_sheet edit" title="Editer"><span class="fui-new"></span></a>
 								<a href="#" class="delete_sheet" title="Supprimer"><span class="fui-cross"></span></a>
 							</div>
 							<h4 class="title"><?= $a_sheet['sheet']['title'] ?></h4>
 							<p class="desc"><?= $a_sheet['sheet']['description'] ?></p>
-							<div>
+							<div class="asheet_categories">
 								<?php
 								foreach($a_sheet['categories'] as $a_category):
-									echo '<a href="/index.php?cat='. $a_category['categoryid'] .'"><span data-id="'. $a_category['categoryid'] .'" class="btn btn-primary btn-label">'. $a_category['name'] .'</span></a> ';
+									echo '<a href="/index.php?cat='. $a_category['categoryid'] .'"><span data-id="'. $a_category['categoryid'] .'" class="btn btn-primary btn-label category">'. $a_category['name'] .'</span></a> ';
 								endforeach;
 								?>
 							</div>
@@ -108,9 +110,9 @@
 					<div id="wrapper_manage_sheet" class="wrapper_manage hide">
 						<form id="manage_sheet">
 							<h4>Ajouter / Modifier une fiche</h4>
-							<input type="hidden" name="sheet_id"  value="">
+							<input type="hidden" name="sheet_sheetid"  value="">
 							<input type="text" value="" name="sheet_title" placeholder="Titre" class="span3">
-							<textarea name="sheet_desc" placeholder="Ajouter la description" class="span3" rows="4">qsdf</textarea>
+							<textarea name="sheet_description" placeholder="Ajouter la description" class="span3" rows="4">qsdf</textarea>
 							<p>Veuillez sélectionner une ou plusieurs catégories:</p>
 							<select class="select-block span3 dropup sheet_categories" name="sheet_categories[]" multiple title="Sélectionner les catégories">
 								<?php
@@ -121,7 +123,7 @@
 									endforeach;
 								?>
 							</select>
-							<button type="submit" class="btn btn-large btn-block btn-primary">Ajouter</button>
+							<button type="submit" class="btn btn-large btn-block btn-primary">Enregistrer</button>
 						<form>
 					</div>
 					<a href="#wrapper_manage_sheet" class="btn btn-small btn-primary btn_manage_sheet add" title="Ajouter une fiche"><span class="fui-plus"></span> Fiche</a>

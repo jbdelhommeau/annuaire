@@ -152,9 +152,17 @@
 
 				if($(evt.target).parent().hasClass("edit")){
 					var elm  = that.closest(".asheet");
-					console.log(elm);
-					wrapper_manage_sheet.find('input[name="id"]').val(elm.find("title"));
-					wrapper_manage_sheet.find('input[name="id"]').val(elm.find("title"));
+					wrapper_manage_sheet.find('input[name="sheet_sheetid"]').val(elm.data("id"));
+					wrapper_manage_sheet.find('input[name="sheet_title"]').val(elm.find(".title").text());
+					wrapper_manage_sheet.find('textarea[name="sheet_description"]').val(elm.find(".desc").text());
+
+					var list_of_categories = Array();
+					elm.find('.category').each(function(){
+						list_of_categories.push($(this).data("id"));
+					});
+					$("select.sheet_categories").selectpicker('val', list_of_categories);
+  					$("select.sheet_categories").selectpicker('render');
+
 				}
 				wrapper_manage_sheet.toggleClass("hide");
 				wrapper_manage_sheet.find('input[name="sheet_title"]').focus();
@@ -171,8 +179,9 @@
 
 				$.post('/index.php?a=manage_sheet', post_data, function(data){
 
-					if(data == "ok"){
-						window.location.href = "/";
+					if(!isNaN(parseInt(data))){
+						window.location.href = "/#sheet_"+data;
+						window.location.reload(true);
 					}else if(data == "error_seizure"){
 						alert("Veuillez saisir tout le champs.");
 					}else{
