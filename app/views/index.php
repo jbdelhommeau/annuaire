@@ -49,7 +49,7 @@
 							<h4>Ajouter une catégorie</h4>
 							<input type="text" value="" name="name" placeholder="Nom" class="span3">
 							<p>Imbriqué sous:</p>
-							<select class="select-block span3 categories dropup" name="parent_id" multiple>
+							<select class="select-block span3 categories dropup" name="parent_id">
 								<option value="">Aucune catégorie</option>
 								<?php
 									foreach($list_of_categories as $categoryid => $name):
@@ -78,17 +78,25 @@
 			<div class="span8 sheets">
 				<div class="wrapper_sheets">
 					<h2>Liste des fiches</h2>
-					<?php 
+					<?php
+
 						if($list_of_sheets):
 						foreach($list_of_sheets as $a_sheet):
 					?>
-						<div class="asheet" data-id="<?= $a_sheet['sheetid'] ?>">
+						<div class="asheet" data-id="<?= $a_sheet['sheet']['sheetid'] ?>">
 							<div class="actions">
 								<a href="#wrapper_manage_sheet"  data-type="add"  class="edit_sheet btn_manage_sheet edit" title="Editer"><span class="fui-new"></span></a>
-								<a href="/index.php?a=delete_sheet&id=<?= $a_sheet['sheetid'] ?>" class="delete_sheet" title="Supprimer"><span class="fui-cross"></span></a>
+								<a href="#" class="delete_sheet" title="Supprimer"><span class="fui-cross"></span></a>
 							</div>
-							<h4 class="title"><?= $a_sheet['title'] ?></h4>
-							<p class="desc"><?= $a_sheet['description'] ?></p>
+							<h4 class="title"><?= $a_sheet['sheet']['title'] ?></h4>
+							<p class="desc"><?= $a_sheet['sheet']['description'] ?></p>
+							<div>
+								<?php
+								foreach($a_sheet['categories'] as $a_category):
+									echo '<a href="/index.php?cat='. $a_category['categoryid'] .'"><span data-id="'. $a_category['categoryid'] .'" class="btn btn-primary btn-label">'. $a_category['name'] .'</span></a> ';
+								endforeach;
+								?>
+							</div>
 							<hr/>
 						</div>
 					<?php
@@ -104,8 +112,7 @@
 							<input type="text" value="" name="sheet_title" placeholder="Titre" class="span3">
 							<textarea name="sheet_desc" placeholder="Ajouter la description" class="span3" rows="4">qsdf</textarea>
 							<p>Veuillez sélectionner une ou plusieurs catégories:</p>
-							<select class="select-block span3 dropup sheet_categories" name="sheet_categories" multiple>
-								<option value="">Sélectionner les catégories</option>
+							<select class="select-block span3 dropup sheet_categories" name="sheet_categories[]" multiple title="Sélectionner les catégories">
 								<?php
 									foreach($list_of_categories as $categoryid => $name):
 								?>
@@ -114,7 +121,6 @@
 									endforeach;
 								?>
 							</select>
-							<button type="reset" class="btn btn-large btn-block btn-danger">Annuler</button>
 							<button type="submit" class="btn btn-large btn-block btn-primary">Ajouter</button>
 						<form>
 					</div>

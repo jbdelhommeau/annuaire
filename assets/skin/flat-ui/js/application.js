@@ -15,7 +15,10 @@
 			"add_new_catgory"       : "#add_new_catgory",
 			"edit_catgory"          : "#edit_catgory",
 			"btn_manage_sheet"         : ".wrapper_sheets .btn_manage_sheet",
-			"wrapper_manage_sheet"  : "#wrapper_manage_sheet"
+			"wrapper_manage_sheet"  : "#wrapper_manage_sheet",
+			"manage_sheet"  : "#manage_sheet",
+			"delete_sheet"       : ".wrapper_sheets .asheet .actions .delete_sheet",
+
 		};
 
 		this.init = function(){
@@ -33,6 +36,8 @@
 
 			/*Fiches*/
 			self.show_manage_sheets();
+			self.manage_sheets();
+			self.delete_sheet();
 
 			/*
 			self.add_category();
@@ -151,11 +156,54 @@
 					wrapper_manage_sheet.find('input[name="id"]').val(elm.find("title"));
 					wrapper_manage_sheet.find('input[name="id"]').val(elm.find("title"));
 				}
-				console.log(evt.target);
 				wrapper_manage_sheet.toggleClass("hide");
-				return false;
+				wrapper_manage_sheet.find('input[name="sheet_title"]').focus();
 			});
 
+		};
+
+		this.manage_sheets = function(){
+			$(self.list_selector.manage_sheet).submit(function(){
+
+				var post_data = $(this).serialize();
+
+				console.log(post_data);
+
+				$.post('/index.php?a=manage_sheet', post_data, function(data){
+
+					if(data == "ok"){
+						window.location.href = "/";
+					}else if(data == "error_seizure"){
+						alert("Veuillez saisir tout le champs.");
+					}else{
+						alert("Erreur lors de l'insertion en base.");
+					}
+
+				});
+				
+
+				return false;
+			});
+		};
+
+		this.delete_sheet = function(){
+			$(self.list_selector.delete_sheet).click(function(){
+
+				var that = $(this),
+					elm  = that.closest(".asheet");
+				if(confirm("Voulez vous vraiment ?")){
+					$.post('/index.php?a=delete_sheet', {id: elm.data("id") }, function(data){
+						if(data == "ok"){
+							elm.fadeOut(function(){
+								$(this).remove();
+							});
+						}
+					});
+				}else{
+					return false;
+				}
+
+			});
 		};
 
 		//initialisation du module
