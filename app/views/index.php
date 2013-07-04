@@ -63,6 +63,7 @@
 							</select>
 							<button type="submit" class="btn btn-large btn-block btn-primary">Ajouter</button>
 						</form>
+						<a href="#" class="close" title="Fermer"><span class="fui-cross"></span></a>
 					</div>
 
 					<div id="wrapper_edit_category" class="wrapper_manage hide">
@@ -72,6 +73,7 @@
 							<input type="text" value="" name="name" placeholder="Nom" class="span3">
 							<button type="submit" class="btn btn-large btn-block btn-primary">Enregistrer</button>
 						</form>
+						<a href="#" class="close" title="Fermer"><span class="fui-cross"></span></a>
 					</div>
 
 				</div>
@@ -125,6 +127,7 @@
 							</select>
 							<button type="submit" class="btn btn-large btn-block btn-primary">Enregistrer</button>
 						<form>
+						<a href="#" class="close" title="Fermer"><span class="fui-cross"></span></a>
 					</div>
 					<a href="#wrapper_manage_sheet" class="btn btn-small btn-primary btn_manage_sheet add" title="Ajouter une fiche"><span class="fui-plus"></span> Fiche</a>
 				</div>

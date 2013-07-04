@@ -4,7 +4,7 @@
 	$db_config = array(
 		'host'     => 'localhost',
 		'user'     => 'root',
-		'password' => 'jbd*ns44',
+		'password' => '***',
 		'database' => 'medialibs',
 		'encodage' => 'UTF8'
 	);

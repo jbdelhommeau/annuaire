@@ -100,6 +100,7 @@ ul.list_categories li.new{
 }
 
 .wrapper_manage{
+	position: relative;
 	margin-top: 10px;
 	background-color: rgba(255,255,255,0.05);
 	padding: 4px 10px;
@@ -156,4 +157,10 @@ ul.list_categories li.new{
 .btn-label {
 	line-height: 10px;
 	padding: 9px 5px 10px;
+}
+
+.wrapper_manage .close{
+	position: absolute;
+	top: 4px;
+	right: 5px;
 }

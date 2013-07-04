@@ -14,17 +14,15 @@
 			"btn_add_category"      : ".wrapper_categories .btn_add_category",
 			"add_new_catgory"       : "#add_new_catgory",
 			"edit_catgory"          : "#edit_catgory",
-			"btn_manage_sheet"         : ".wrapper_sheets .btn_manage_sheet",
+			"btn_manage_sheet"      : ".wrapper_sheets .btn_manage_sheet",
 			"wrapper_manage_sheet"  : "#wrapper_manage_sheet",
-			"manage_sheet"  : "#manage_sheet",
-			"delete_sheet"       : ".wrapper_sheets .asheet .actions .delete_sheet",
+			"manage_sheet"          : "#manage_sheet",
+			"delete_sheet"          : ".wrapper_sheets .asheet .actions .delete_sheet",
+			"close_wrapper_manager" : ".wrapper_manage .close"
 
 		};
 
 		this.init = function(){
-
-			
-
 			self.init_select();
 
 			/*Catégories*/
@@ -39,12 +37,8 @@
 			self.manage_sheets();
 			self.delete_sheet();
 
-			/*
-			self.add_category();
-			self.show_edit_category();
-			self.edit_category();
-			self.delete_category();
-			*/
+			/*Close*/
+			self.close_wrapper_manager();
 		};
 
 		this.init_select = function(){
@@ -53,7 +47,8 @@
 
 		this.show_add_category = function(){
 			$(self.list_selector.btn_add_category).click(function(){
-				$(self.list_selector.wrapper_add_category).toggleClass("hide");
+				$(self.list_selector.wrapper_add_category).show();
+				$(self.list_selector.wrapper_edit_category).hide();
 				$(self.list_selector.wrapper_add_category).find('input[name="name"]').focus();
 				return false;
 			});
@@ -91,7 +86,9 @@
 
 				wrapper_edit_category.find('input[name="id"]').val(elm.data("id"));
 				wrapper_edit_category.find('input[name="name"]').val(elm.text());
-				wrapper_edit_category.toggleClass("hide");
+				wrapper_edit_category.show();
+
+				$(self.list_selector.wrapper_add_category).hide();
 
 				wrapper_edit_category.find('input[name="name"]').focus();
 			});
@@ -164,7 +161,7 @@
   					$("select.sheet_categories").selectpicker('render');
 
 				}
-				wrapper_manage_sheet.toggleClass("hide");
+				wrapper_manage_sheet.show();
 				wrapper_manage_sheet.find('input[name="sheet_title"]').focus();
 			});
 
@@ -174,8 +171,6 @@
 			$(self.list_selector.manage_sheet).submit(function(){
 
 				var post_data = $(this).serialize();
-
-				console.log(post_data);
 
 				$.post('/index.php?a=manage_sheet', post_data, function(data){
 
@@ -212,6 +207,13 @@
 					return false;
 				}
 
+			});
+		};
+
+		this.close_wrapper_manager = function(){
+			$(self.list_selector.close_wrapper_manager).click(function(){
+				$(this).parent().hide();
+				return false;
 			});
 		};
 
